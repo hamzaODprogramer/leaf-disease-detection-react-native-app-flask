@@ -1,5 +1,6 @@
+import { router } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function RecentDiseases() {
   return (
@@ -26,7 +27,9 @@ export default function RecentDiseases() {
           <Text style={styles.diseaseDate}>Détecté il y a 3 jours</Text>
         </View>
       </View>
-      
+      <TouchableOpacity onPress={()=>router.replace('/(tabs)/activity')} style={styles.button}>
+        <Text style={styles.buttonText}>Voir plus</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -67,4 +70,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#6B7280", 
   },
+  button : {
+    backgroundColor : '#16A34A',
+    width :'100%',
+    textAlign : 'center',
+    display : 'flex',
+    justifyContent : 'center',
+    alignItems : 'center',
+    padding : 9,
+    borderRadius : 20,
+    color: 'white'
+  },
+  buttonText : {
+    textAlign : 'center',
+    color: 'white',
+    fontWeight : 'bold',
+    fontSize : 14
+  }
 });

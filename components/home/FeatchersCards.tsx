@@ -1,29 +1,30 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Feather from "@expo/vector-icons/Feather"; 
+import { router } from "expo-router";
 
 export default function FeatchersCards() {
   return (
       <View style={styles.grid}>
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity onPress={()=>router.replace('/(tabs)/scanner')} style={styles.card}>
           <View style={styles.iconContainerGreen}>
             <Feather name="camera" size={24} color="#16A34A" />
           </View>
           <Text style={styles.cardText}>Scanner</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity onPress={()=>router.replace('/(tabs)/activity')} style={styles.card}>
           <View style={styles.iconContainerBlue}>
             <Feather name="activity" size={24} color="#2563EB" />
           </View>
           <Text style={styles.cardText}>Historique</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity onPress={()=>router.replace('/guide/guide')} style={styles.card}>
           <View style={styles.iconContainerOrange}>
             <Feather name="book-open" size={24} color="#F97316" />
           </View>
           <Text style={styles.cardText}>Guide</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity onPress={()=>router.replace('/settings/settings')} style={styles.card}>
           <View style={styles.iconContainerPurple}>
             <Feather name="settings" size={24} color="#7C3AED" />
           </View>

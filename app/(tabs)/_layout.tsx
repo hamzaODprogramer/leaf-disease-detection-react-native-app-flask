@@ -25,11 +25,13 @@ export default function TabLayout() {
               active={pathname === routes.home}
             />
           </TouchableOpacity>
-          <MenuItem
-            icon="camera"
-            label="Scanner"
-            active={pathname === routes.scanner}
-          />
+          <TouchableOpacity onPress={() => router.replace("/(tabs)/scanner")}>
+            <MenuItem
+              icon="camera"
+              label="Scanner"
+              active={pathname === routes.scanner}
+            />
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => router.replace("/(tabs)/galerie")}>
             <MenuItem
               icon="image"
@@ -40,7 +42,7 @@ export default function TabLayout() {
           <TouchableOpacity onPress={() => router.replace("/(tabs)/activity")}>
             <MenuItem
               icon="activity"
-              label="Conseils"
+              label="Activities"
               active={pathname === routes.conseils}
             />
           </TouchableOpacity>
