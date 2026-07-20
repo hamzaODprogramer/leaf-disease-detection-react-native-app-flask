@@ -1,50 +1,60 @@
-# Welcome to your Expo app 👋
+# Leaf Disease Detection
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native (Expo) mobile app that identifies plant diseases from leaf photos using the Gemini API.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Scan** — Take or pick a leaf photo for disease analysis
+- **Diagnosis** — Gemini API returns disease name, confidence, description, and recommendations
+- **History** — Local SQLite database stores past detections
+- **Gallery** — Browse scanned leaf images
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- React Native (Expo Router)
+- TypeScript
+- Gemini API (Google Generative AI)
+- SQLite (expo-sqlite)
+- Flask backend (for ML prediction fallback)
 
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Setup
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Create a `.env` file in the project root:
 
-## Learn more
+```env
+EXPO_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+EXPO_PUBLIC_BACKEND_URL=http://your-flask-backend:5000
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Start the app:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+## Project Structure
 
-Join our community of developers creating universal apps.
+```
+app/             Expo Router pages (file-based routing)
+  (tabs)/        Tab navigation screens
+  result/        Disease analysis result screen
+  waiting/       Analysis loading screen
+  guide/         User guide screen
+  settings/      App settings screen
+actions/         API call functions
+components/      Reusable UI components
+constants/       Colors, routes, guide data
+hooks/           Custom React hooks
+utils/           Database utility
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Architecture
+
+1. User captures or selects a leaf image
+2. Image is optionally sent to a Flask backend for ML prediction
+3. If diseased, image is analyzed by Gemini API
+4. Results and recommendations are displayed and saved locally
