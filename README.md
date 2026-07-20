@@ -114,14 +114,3 @@ Scan the QR code with Expo Go, or press `a` for Android emulator / `i` for iOS s
 | **Storage** | SQLite (`expo-sqlite`) |
 | **Camera** | Expo Camera |
 | **Images** | Expo Image Picker & File System |
-
-## Screens
-
-| Screen | Purpose |
-|--------|---------|
-| **Home** | Welcome card, feature shortcuts, recent diseases preview |
-| **Scanner** | Camera view + gallery picker to capture leaf images |
-| **Result** | Displays diagnosis, confidence, description, and recommendations |
-| **Activity** | Detection history grouped by date |
-| **Gallery** | Grid of all scanned leaf images |
-| **Guide** | Step-by-step instructions for using the app |
