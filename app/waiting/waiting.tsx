@@ -37,13 +37,11 @@ const WaitingScreen = () => {
         }, 1000);
 
         const result = await get_prediction({ uri: image });
-        console.log('API Response:', result);
         setPrediction(result);
 
         setTimeout(() => {
           clearInterval(progressInterval);
           clearInterval(stepInterval);
-          console.log('Navigating with prediction:', result.result);
           router.replace({
             pathname: "/result/result",
             params: { 
@@ -54,7 +52,6 @@ const WaitingScreen = () => {
         }, 5000);
 
       } catch (error) {
-        console.error('Error analyzing image:', error);
       }
     };
 

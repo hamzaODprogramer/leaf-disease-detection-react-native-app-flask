@@ -30,7 +30,6 @@ export default function HistoriqueScreen() {
       setDetections(Array.isArray(data) ? data : []);
       setError(null);
     } catch (error) {
-      console.error('Error loading detections:', error);
       setError('Failed to load detection history');
       setDetections([]);
     } finally {
@@ -38,7 +37,6 @@ export default function HistoriqueScreen() {
     }
   };
 
-  // Group detections by date
   const groupDetectionsByDate = () => {
     const groups: { [key: string]: Detection[] } = {};
     

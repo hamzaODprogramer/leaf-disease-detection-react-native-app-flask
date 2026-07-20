@@ -52,11 +52,9 @@ export default function GalleryScreen() {
         })
       );
 
-      // Sort images by timestamp (newest first)
       imageData.sort((a, b) => b.timestamp - a.timestamp);
       setImages(imageData);
     } catch (error) {
-      console.error('Error loading images:', error);
     } finally {
       setLoading(false);
     }
@@ -80,10 +78,8 @@ export default function GalleryScreen() {
               if (!directory) return;
               
               await FileSystem.deleteAsync(directory + filename);
-              // Reload images after deletion
               loadImages();
             } catch (error) {
-              console.error('Error deleting image:', error);
               Alert.alert("Erreur", "Impossible de supprimer l'image");
             }
           }

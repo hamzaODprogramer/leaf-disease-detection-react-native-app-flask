@@ -28,7 +28,6 @@ export default function ScannerScreen() {
         const filename = `plant_${timestamp}.jpg`;
         const filepath = `${FileSystem.documentDirectory}${filename}`;
 
-        // Copy the image to our app's directory
         await FileSystem.copyAsync({
           from: result.assets[0].uri,
           to: filepath
@@ -43,7 +42,6 @@ export default function ScannerScreen() {
         });
       }
     } catch (error) {
-      console.error("Error picking image:", error);
       Alert.alert("Error", "Failed to pick image from gallery");
     }
   };
@@ -76,7 +74,6 @@ export default function ScannerScreen() {
           });
         }
       } catch (error) {
-        console.error("Error taking picture:", error);
         Alert.alert("Error", "Failed to save photo");
       }
     }

@@ -11,8 +11,7 @@ interface DiseaseAnalysis {
   recommendations: string[];
 }
 
-// Gemini API configuration
-const GEMINI_API_KEY = 'AIzaSyBNsYUCN9w_jwR7RG850s_4HdZjh8VJTzI';
+const GEMINI_API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY || '';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 export default function ResultScreen() {
@@ -32,7 +31,6 @@ export default function ResultScreen() {
     try {
       setLoading(true);
       
-      // Convert image to base64
       const imageResponse = await fetch(image);
       const blob = await imageResponse.blob();
       const base64Image = await new Promise<string>((resolve) => {
@@ -87,29 +85,17 @@ export default function ResultScreen() {
       const responseText = data.candidates[0].content.parts[0].text;
       
       try {
-        // Log the raw response for debugging
-        console.log('Raw Gemini response:', responseText);
-        
-        // Clean the response text to ensure it's valid JSON
         const cleanedResponse = responseText.trim().replace(/^```json\n?|\n?```$/g, '');
-        
-        // Parse the JSON response
         const analysisData = JSON.parse(cleanedResponse) as DiseaseAnalysis;
         setAnalysis(analysisData);
 
-        // Save the detection to the database
         const status = isDiseased ? 'severe' : 'healthy';
         await saveDetection(image, analysisData.diseaseName, analysisData.confidence / 100, status);
-        console.log('Detection saved to database');
 
       } catch (parseError) {
-        console.error('Error parsing Gemini response:', parseError);
-        console.error('Raw response that failed to parse:', responseText);
         throw new Error('Invalid response format from Gemini');
       }
     } catch (error) {
-      console.error('Error analyzing disease:', error);
-      // Show error in UI
       setAnalysis({
         diseaseName: "Erreur d'analyse",
         confidence: 0,

@@ -1,3 +1,3 @@
 export const CONFIG = {
-    backendUrl: "http://192.168.1.7:5000"
+    backendUrl: process.env.EXPO_PUBLIC_BACKEND_URL || "http://192.168.1.7:5000"
 }
